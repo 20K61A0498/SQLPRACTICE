@@ -1,0 +1,139 @@
+--sequence
+--
+--synonym
+
+create SYNONYM jhansi for ece;
+
+select * from jhansi;
+
+delete from jhansi where serial = 139;
+
+create sequence ramana
+start with  3
+maxvalue 10
+minvalue 1
+INCREMENT by 2
+NOCYCLE
+;
+
+select narayana.currval from dual;
+select narayana.nextval from dual;
+
+create SEQUENCE narayana;
+
+select * from dual;
+
+
+create sequence jhr 
+start with 100
+minvalue 1
+maxvalue 110
+increment by 2
+nocycle;
+
+create table sq(id number(2) primary key,
+                id2 number(2) UNIQUE);
+                
+insert into sq values(jhr.nextval,jhr.nextval);
+
+alter table sq modify id number(3) modify id2 number(3);
+
+select * from sq;
+
+drop SEQUENCE jhr;
+
+=======================================================
+
+ select max(salary) from employees;
+ 
+select upper(last_name) from employees;
+
+select last_name from employees;
+ 
+select initcap('lakshmi narayana') from dual;
+select lower('LAKSHMI nAraYana') from dual;
+select upper('lakshmi narayana') from dual;
+
+select concat(last_name,' ')||salary from employees;
+
+select substr('lakshmi narayana',2) from dual;
+select length('lakshmi narayana') from dual;
+
+select instr('lakshmi narayana','a') from dual;
+
+select lpad(last_name,10,'*')||rpad(' ',10,'*') from employees;
+
+select trim('    lakshmi narayana    ') from dual;
+
+select trim(trailing ' ' from '    narayana           ') from dual;
+
+select trim('w' from 'HelloworldH') from dual;
+
+
+SELECT replace('lakshmi narayana', 'a','b') from dual; 
+
+
+select last_name from employees ;
+select last_name,salary from employees where lower(last_name)=lower('&name');
+
+select substr('jhansi',2,1) from dual;
+
+select instr('ramanaramanaramana','a',1,11) from dual;
+
+
+select count(*) from employees;
+
+select translate('ramana','oyzt','arnm') from dual;
+
+
+select round(5475.5361,-1) from dual;
+
+select round(3456.456,2),round(9398.99999,2),round(54321.4567,-2) from dual;
+
+--3456.460,3456.00
+--9399,9398
+--54300
+
+select round(5435.9978,2) from dual;
+
+select trunc(97.222222222,-1) from dual;
+
+select mod(4,2) from dual; 
+
+select floor(99.999999999999999999999991) from dual;
+
+SELECT last_name, hire_date
+FROM employees
+WHERE hire_date < '01-FEB-08';
+
+select systimestamp from dual;
+
+
+SELECT last_name, round((SYSDATE-hire_date)/7) AS WEEKS
+FROM employees
+WHERE department_id = 90;
+
+select to_char((sysdate-26-01-04),'yy') from dual;
+--
+--select 20-08-2023 - 26-01-2004 from dual;
+
+select months_between(sysdate,'26-01-04') from dual;
+
+select add_months(sysdate,2) from dual;
+
+select next_day(sysdate,5) from dual;
+
+select last_day('01-09-23') from dual;
+
+
+2023
+
+jan-jun 1st
+july - dec 2nd
+
+1-15 prev
+16 > next
+
+select trunc(sysdate,'year') from dual;
+
+1-10-97 mon

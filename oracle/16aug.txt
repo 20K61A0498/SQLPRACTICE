@@ -1,0 +1,43 @@
+select * from all_constraints where owner='HR'
+and table_name ='CUSTOMER';
+
+select * from customer;
+
+select * from city;
+
+delete from city where town_id=20;
+rollback;
+
+-- adding col after table creation
+alter table customer add mail varchar2(25);
+-- adding constarint after table created 
+alter table customer add unique(mail);
+
+-- update all col gives error
+update customer set mail = 'MA';
+
+
+alter table customer drop column gender;
+-- to deelete a constraint
+
+alter table customer drop constraint SYS_C008263;
+
+-- adding fk constarint with on delete cascade
+
+alter table customer add constraint customer_fk foreign key(city_id) references city (town_id) on delete cascade;
+=======================================================================================================================
+
+
+desc employees;
+select distinct job_id from employees;
+
+select * from employees;
+
+--king earns 24000
+
+select last_name||','||job_id  "data" from employees;
+
+select concat(last_name,' earns  ')||concat(salary,'') data from employees;
+
+
+

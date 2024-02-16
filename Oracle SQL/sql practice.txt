@@ -1,0 +1,1079 @@
+===============> DATA RETRIVAL LANGUAGE <=============================
+Basic SELECT statement
+--A SELECT statement retrieves information from the database
+
+----------SYNTAX-------------
+
+
+SELECT *|{[DISTINCT] column|expression [alias],...}
+FROM table;
+
+EX:  select * from Employees;  --it display all information from employees table
+
+
+---------Asterik(*)------------
+You can display all columns of data in a table by following the SELECT keyword with an asterisk(*)
+
+EX:  select * from Employees; 
+
+
+--------------------------------------------------------------------------
+-------------Data Definition Language ------------------------------------
+DDL changes the structure of the table like creating atable, deleting a table, altering a table, etc.
+• All the command of DDL are auto-committed that
+means it permanently save all the changes in the
+database.
+-These are auto commit statements
+-----------Create---------------
+
+syntax :CREATE TABLE TABLE_NAME (COLUMN_NAME DATATYPES[,....]);
+
+
+
+------------Alter----------------
+syntax :ALTER TABLE table_name ADD column_name COLUMN-definition;
+ALTER TABLE MODIFY(COLUMN DEFINITION....);
+
+--------------Rename----------------------
+
+SYNTAX:
+      rename ramanaa to sai;
+      alter table sai rename column branch to binch;
+      ALTER TABLE Student RENAME TO Student_Details;
+
+--------------------Truncate-------------
+  
+SYNTAX:
+       TRUNCATE TABLE table_name;
+
+-------------------Drop--------------------
+It is used to delete both the structure and recordstored in the table.
+
+SYNTAX:
+DROP TABLE TABLE_NAME;
+
+Data definition language (DDL) statements let you to perform these tasks:
+
+     Create, alter, and drop schema objects
+
+     Grant and revoke privileges and roles
+
+     Analyze information on a table, index, or cluster
+
+     Establish auditing options
+
+     Add comments to the data dictionary
+
+
+-------create------------
+Create is used to construct a table;
+
+
+
+create table ramana
+(
+    rolno varchar2(11),
+    name varchar(15),
+    email varchar2(10),
+    branch varchar2(6),
+    cgpa number(2,2)
+);
+
+
+
+----ALTER -------------
+ALTER: It is used to alter the structure of the database. This changecould be either to modify the characteristics of an existing
+attribute or probably to add a new attribute.
+
+**EXAMPLES
+  alter table sai modify branch varchar2(40); ===> modify the column size
+  alter table sai add phone_num number(12);   ===> add new column
+  alter table sai drop column phone_num;      ===> Drop that specified column
+
+---- -----------RENAME----------------
+
+ rename ramanaa to sai;
+      alter table sai rename column branch to binch;
+      ALTER TABLE Student RENAME TO Student_Details;
+
+--------------TRUNCATE=--------------
+ TRUNCATE: It is used to delete all the rows from the table and free the 
+   space containing the table
+
+EXAMPLE:
+       TRUNCATE TABLE SAI;
+
+-------------DROP-----------------
+ It is used to delete both the structure and recordstored in the table
+
+EXAMPLE:
+     DROP TABLE SAI ;
+
+
+
+
+
+-------------------------------------------------------------------------------------------DATA MANIPULATION LANGUAGE----------------------------------------------------------------------
+• DML commands are used to modify the database. It isresponsible for all form of CHANGES in the database.
+• The command of DML is not auto-committed that
+means it can't permanently save all the changes in thedatabase. They can be rollback.
+
+
+insert
+update
+delete
+merge
+
+
+
+==========> INSERT <===========
+INSERT: The INSERT statement is a SQL query. It is used to insert
+data into the row of a table.
+
+SYNTAX:
+     INSERT INTO TABLE_NAME (col1, col2, col3,.... col N)
+     VALUES (value1, value2, value3, .... valueN);
+      OR
+     INSERT INTO TABLE_NAME VALUES (value1, value2, value3, .... valueN);
+
+EXAMPLES :
+create table ramana
+(
+    name varchar2(20),
+    regd varchar(15),
+    email varchar2(30),
+    mb number(15)
+)
+insert into ramana values('ramana','20k61a83h','venkata@sabeeheg','703673645286');
+insert into ramana(name,mb) values('sai','3748472828');
+
+
+
+=========>UPDATE <=====================
+Update: This command is used to update or modify the value of acolumn in the table.
+
+Syntax:
+UPDATE table_name SET [column_name1= value1,...column_nameN = valueN] [WHERE CONDITION]
+
+
+EXAMPLE:
+        update ramana set regd='7gd5364g64' where name='ramana';
+
+
+
+
+=================>DELETE<===============
+To delete one or more rows from a table, you use the Oracle DELETE statement as follows:
+
+
+
+
+SYNTAX:
+DELETE
+FROM
+    table_name
+WHERE
+    condition;
+
+EXAMPLE:
+        delete from ramana where name='sai';
+
+
+
+--------------------------------------------------------------------------------------------TRANSCATION CONTROL LANGUAGE---------------------
+Transaction Control Language commands are used to manage transactions in the database.
+
+COMMIT
+ROLLBACK
+SAVE POINT
+
+
+=================> COMMIT <===============
+The COMMIT command in SQL is used to permanently save any transaction into the database
+
+COMMIT;
+If we use this command then we can not rollback the previous actio
+
+==================>SAVE POINT <========================
+This command helps you to sets a save point within a transcation .
+SYNTAX:==>  Savepoint savepoint_name;
+
+
+create table sai(nu varchar2(20),
+    si varchar2(20));
+insert into sai values(10,20);
+savepoint a;
+insert into sai values(29,89);
+savepoint b;
+rollback to a;  ====>record containing 29,89 values removed
+
+
+
+=====================>ROLL BACK <====================
+ROLLBACK in SQL is a transactional control language that is used to undo the transactions that have not been saved in the database. The command is only been used to undo changes since the last COMMIT
+
+SYNTAX:
+      ROLLBACK;
+      ROLLBACK TO C;
+
+
+
+----------------------------------------------------------------------------------------------DATA CONTROL LANGUAG----------------------------------
+
+1.Grant 
+2.Revoke
+
+
+
+
+------------------------------------------------------------------------------------------------CONSTRAINTS--------------------------------------cONSTRAINTS ARE USED FOR DATA VALIDATION BEFORE INSERTING THE DATA
+1.NOT NULL
+2.CHECK
+3.UNIQUE
+4.PRIMARY KEY(not NULL + UNIQUE)
+5.FOREIGN KEY(REFERNCES FROM RIMARY KEY)
+
+
+NOT NULL:
+ This constraint tells that we cannot store a null value in a column. That is, if a column is specified as NOT NULL then we will not be able to store null in this particular column any more.
+
+
+UNIQUE: 
+This constraint when specified with a column, tells that all the values in the column must be unique. That is, the values in any row of a column must not be repeated.
+
+
+PRIMARY KEY: 
+A primary key is a field which can uniquely identify each row in a table. And this constraint is used to specify a field in a table as primary key.
+
+
+FOREIGN KEY:
+ A Foreign key is a field which can uniquely identify each row in a another table. And this constraint is used to specify a field as Foreign key.
+
+
+
+CHECK:
+ This constraint helps to validate the values of a column to meet a particular condition. That is, it helps to ensure that the value stored in a column meets a specific condition.
+
+EXAMPLE:
+
+create table ramana (id number(10) primary key,
+    name varchar(20) not null,
+    mobile number(10) unique check(length(mobile)<=10),
+    age number check(age>=18),
+    city_id number(4) references city(city_id)
+    );
+create  table city_id(
+    city_id number(4),
+    city_name varchar2(30)
+)
+
+CHANGING CONSTRAINTS AFTER INSERTING
+ALTER table city_id add primary key(city_id);
+
+select * from all_constraints where owner='HR'
+and table_name ='CUSTOMER';
+
+select * from customer;
+
+select * from city;
+
+delete from city where town_id=20;
+rollback;
+
+-- adding col after table creation
+alter table customer add mail varchar2(25);
+-- adding constarint after table created 
+alter table customer add unique(mail);
+
+-- update all col gives error
+update customer set mail = 'MA';
+
+
+alter table customer drop column gender;
+-- to deelete a constraint
+
+alter table customer drop constraint SYS_C008263;
+
+-- adding fk constarint with on delete cascade
+
+alter table customer add constraint customer_fk foreign key(city_id) references city (town_id) on delete cascade;
+=======================================================================================================================
+
+
+desc employees;
+select distinct job_id from employees;
+
+select * from employees;
+
+--king earns 24000
+==================>PIPE OPERATOR<=================
+
+select last_name||','||job_id  "data" from employees;
+
+select concat(last_name,' earns  ')||concat(salary,'') data from employees;
+
+
+--select ---------------------
+--FROM
+--where ---------------
+--order by --------
+
+The ORDER BY command is used to sort the result set in ascending or descending order. The ORDER BY command sorts the result set in ascending order by default. To sort the records in descending order, use the DESC keyword.
+
+
+
+-==-=-==-=-==--=-=-=-EXAMPLES-=-=-=-=-=-=-=-=-=
+
+select last_name from employees WHERE last_name >'Hunold';
+
+select last_name from employees where salary <=10000;
+
+select last_name,salary from employees where salary between 5000 and 10000 order by 2 ;
+
+select last_name from employees order by last_name desc;
+
+select * from employees;
+
+select last_name,department_id from employees where last_name not in ('Abel','Hunold','King');
+
+select last_name,department_id from employees where salary  not in (90,60,110);
+
+--LIKE
+-- wild card search opearators - %
+
+
+select * from employees where last_name like '_a__';
+
+
+select * from employees where commission_pct is not  null;
+
+select * from employees where salary < 12000 or department_id = 60;
+
+select sysdate from dual; 
+
+
+select hire_date hg from employees order by hg desc;
+
+SELECT last_name, department_id, salary
+FROM employees
+ORDER BY department_id, salary DESC; 
+
+select &name from employees where last_name = '&hsdbchj';
+
+SELECT employee_id, last_name, job_id,&column_name
+FROM employees
+WHERE &condition
+ORDER BY &order_column;
+
+
+SELECT employee_id, last_name, job_id, &&column_nam
+FROM employees
+ORDER BY &column_nam;
+
+
+SET VERIFY ON
+DEFINE employee_num = 200 
+DEFINE employee_num2 = 101
+SELECT employee_id, last_name, salary, department_id
+FROM employees
+WHERE employee_id in (&employee_num,&employee_num2);
+
+undefine employee_num
+
+
+
+-- Sorting -- Order by asc | desc
+
+select * from employees;
+
+select ascii('A') from dual; -- 65
+
+select ascii('a') from dual; --97
+
+select * from employees order by first_name;
+
+select * from employees order by first_name desc;
+
+select * from employees order by salary asc;
+
+select * from employees order by salary desc;
+
+
+
+-- null treated as highest value
+
+select * from employees order by commission_pct;
+
+select * from employees order by commission_pct desc;
+
+
+
+-- order by more than one column
+
+select * from employees order by salary desc,hire_date;
+
+select * from employees order by 8;
+
+select * from employees order by 6,8 desc;
+
+
+------------------=========------ SINGLE ROW FUNCTIONS--------============------
+general functions
+1.NVL
+2.NVL2
+3.nullif
+4.coalesce
+5.case
+6.decode
+
+
+substring(string,from position,no.of.char)--3args
+substr(string,from-position)
+instr('ramana',a)-----returns position of first occurence of a
+translate("an apple","XYZtr")
+
+
+NVL(arg1,arg2)
+arg1 is null then its returns arg2
+ex: NVL(4,5)==o/p=4
+
+NVL2(arg1,arg2,arg3)
+arg1 is null then its returns arg3 otherwise it returns argument 2
+
+
+nullif(arg1,arg2);
+arg1=arg2 returns null
+otherwise returns not null
+
+
+
+
+
+
+
+
+
+
+ select max(salary) from employees;
+ 
+select upper(last_name) from employees;
+
+select last_name from employees;
+ 
+select initcap('lakshmi narayana') from dual;
+select lower('LAKSHMI nAraYana') from dual;
+select upper('lakshmi narayana') from dual;
+
+select concat(last_name,' ')||salary from employees;
+
+select substr('lakshmi narayana',2) from dual;
+select length('lakshmi narayana') from dual;
+
+select instr('lakshmi narayana','a') from dual;
+
+select lpad(last_name,10,'*')||rpad(' ',10,'*') from employees;
+
+select trim('    lakshmi narayana    ') from dual;
+
+select trim(trailing ' ' from '    narayana           ') from dual;
+
+select trim('w' from 'HelloworldH') from dual;
+
+
+SELECT replace('lakshmi narayana', 'a','b') from dual; 
+
+
+select last_name from employees ;
+select last_name,salary from employees where lower(last_name)=lower('&name');
+
+select substr('jhansi',2,1) from dual;
+
+select instr('ramanaramanaramana','a',1,11) from dual;
+
+
+select count(*) from employees;
+
+select translate('ramana','oyzt','arnm') from dual;
+
+
+select round(5475.5361,-1) from dual;
+
+select round(3456.456,2),round(9398.99999,2),round(54321.4567,-2) from dual;
+
+--3456.460,3456.00
+--9399,9398
+--54300
+
+select round(5435.9978,2) from dual;
+
+select trunc(97.222222222,-1) from dual;
+
+select mod(4,2) from dual; 
+
+select floor(99.999999999999999999999991) from dual;
+
+SELECT last_name, hire_date
+FROM employees
+WHERE hire_date < '01-FEB-08';
+
+select systimestamp from dual;
+
+
+SELECT last_name, round((SYSDATE-hire_date)/7) AS WEEKS
+FROM employees
+WHERE department_id = 90;
+
+select to_char((sysdate-26-01-04),'yy') from dual;
+--
+--select 20-08-2023 - 26-01-2004 from dual;
+
+select months_between(sysdate,'26-01-04') from dual;
+
+select add_months(sysdate,2) from dual;
+
+select next_day(sysdate,5) from dual;
+
+select last_day('01-09-23') from dual;
+
+
+
+
+
+----------------------JOINS-----------------------------------
+
+Joins in Oracle:
+============
+
+Equi join - An equi join is a type of join that combines tables
+based on matching values in specified columns. =
+
+Non-Equi join - The nonequijoins is such a join which match column
+values from different tables based on an inequality
+(instead of the equal sign like >, <, >=, <= ) expression
+
+
+
+
+4 Types of Equi join:
+=================
+
+Inner Join
+Left Outer join
+Right Outer Join
+Full Outer Join
+
+2 methods to write join query:
+==============================
+
+1. Implicit method
+2. ANSI Method
+
+Table scripts for practice:
+***************************
+
+create table customer
+(
+cust_id number,
+cust_name varchar2(50),
+mob_no number(10),
+email varchar2(50),
+country_id number(3)
+);
+
+Insert into customer (CUST_ID,CUST_NAME,MOB_NO,EMAIL,COUNTRY_ID) values
+(1000,'Kannan',8989898989,'kannan@gmail.com',200);
+Insert into customer (CUST_ID,CUST_NAME,MOB_NO,EMAIL,COUNTRY_ID) values
+(1001,'Arun',8989898990,'arun@gmail.com',204);
+Insert into customer (CUST_ID,CUST_NAME,MOB_NO,EMAIL,COUNTRY_ID) values
+(1002,'Karthik',8989898991,'Karthik@gmail.com',202);
+Insert into customer (CUST_ID,CUST_NAME,MOB_NO,EMAIL,COUNTRY_ID) values
+(1003,'Shankar',8989898992,'shankar@gmail.com',203);
+Insert into customer (CUST_ID,CUST_NAME,MOB_NO,EMAIL,COUNTRY_ID) values
+(1004,'Sree',8989898993,'Sree@gmail.com',205);
+Insert into customer (CUST_ID,CUST_NAME,MOB_NO,EMAIL,COUNTRY_ID) values
+(1005,'Babu',8989898994,'Babu@gmail.com',200);
+Insert into customer (CUST_ID,CUST_NAME,MOB_NO,EMAIL,COUNTRY_ID) values
+(1006,'Radha',8989898995,'Radha@gmail.com',202);
+Insert into customer (CUST_ID,CUST_NAME,MOB_NO,EMAIL,COUNTRY_ID) values
+(1007,'Senthil',8989898996,'Senthil@gmail.com',200);
+
+commit;
+
+create table country
+(
+Country_id number(3),
+Country_name varchar2(50)
+);
+
+Insert into country (COUNTRY_ID,COUNTRY_NAME) values (200,'INDIA');
+Insert into country (COUNTRY_ID,COUNTRY_NAME) values (202,'USA');
+Insert into country (COUNTRY_ID,COUNTRY_NAME) values (203,'SINGAPORE');
+Insert into country (COUNTRY_ID,COUNTRY_NAME) values (204,'UK');
+
+commit;
+
+============================================
+
+Inner Join: -- implicit method
+
+select
+c.cust_id,
+c.cust_name,
+c.mob_no,
+c.email,
+c.country_id,
+r.country_name
+from customer c, country r
+where c.country_id=r.country_id;
+
+Inner Join: -- ANSI Method
+
+select
+c.cust_id,
+c.cust_name,
+c.mob_no,
+c.email,
+c.country_id,
+r.country_name
+from customer c inner join country r
+on c.country_id=r.country_id;
+
+*******************************************************
+
+Left Outer Join:
+------------
+-- implicit
+
+select
+c.cust_id,
+c.cust_name,
+c.mob_no,
+c.email,
+c.country_id,
+r.country_name
+from customer c, country r
+where c.country_id=r.country_id(+);
+
+Left Outer Join:
+------------
+-- ANSI
+
+select
+c.cust_id,
+c.cust_name,
+c.mob_no,
+c.email,
+c.country_id,
+r.country_name
+from customer c Left Outer join country r
+on c.country_id=r.country_id;
+
+***************************************************************
+
+Right Outer Join:
+------------
+-- implicit
+
+select
+c.cust_id,
+c.cust_name,
+c.mob_no,
+c.email,
+c.country_id,
+r.country_name
+from customer c, country r
+where c.country_id(+)=r.country_id;
+
+Right Outer Join:
+
+-- ANSI
+
+select
+c.cust_id,
+c.cust_name,
+c.mob_no,
+c.email,
+c.country_id,
+r.country_name
+from customer c Right Outer join country r
+on c.country_id=r.country_id;
+
+*****************************************************
+
+Full Outer Join:
+
+-- implicit method
+
+select
+c.cust_id,
+c.cust_name,
+c.mob_no,
+c.email,
+c.country_id,
+r.country_name
+from customer c, country r
+where c.country_id=r.country_id(+)
+union
+select
+c.cust_id,
+c.cust_name,
+c.mob_no,
+c.email,
+c.country_id,
+r.country_name
+from customer c, country r
+where c.country_id(+)=r.country_id;
+
+------------
+-- ANSI
+
+select
+c.cust_id,
+c.cust_name,
+c.mob_no,
+c.email,
+c.country_id,
+r.country_name
+from customer c Full Outer join country r
+on c.country_id=r.country_id;
+
+*********************************************************
+
+
+select
+c1.cust_id,
+c1.cust_name,
+c1.mob_no,
+c1.email,
+c1.city_id,
+c2.city_name,
+c2.country_id country_id,
+c3.country_name
+from customer c1,city c2, country c3
+where c1.city_id=c2.city_id
+and c2.country_id=c3.country_id;
+
+select
+c1.cust_id,
+c1.cust_name,
+c1.mob_no,
+c1.email,
+c1.city_id,
+c2.city_name,
+c2.country_id country_id,
+c3.country_name
+from customer c1 inner join city c2
+on c1.city_id=c2.city_id
+inner join country c3
+
+on c2.country_id=c3.country_id;
+
+*************************************************************
+-- 2 tables join – HR Schema tables
+
+select * from employees;
+
+select * from departments;
+
+select
+e.employee_id,
+e.first_name,
+e.email,
+e.SALARY,
+e.department_id,
+d.DEPARTMENT_NAME,
+d.LOCATION_ID
+from Employees e,departments d
+where e.department_id=d.department_id;
+
+select
+e.employee_id,
+e.first_name,
+e.email,
+e.SALARY,
+e.department_id,
+d.DEPARTMENT_NAME,
+d.LOCATION_ID
+
+-- Left Outer Join
+
+select
+e.employee_id,
+e.first_name,
+e.job_id,
+e.salary,
+e.department_id,
+d.DEPARTMENT_NAME
+from employees e, departments d
+where e.department_id=d.department_id(+);
+
+select
+e.employee_id,
+e.first_name,
+e.job_id,
+e.salary,
+e.department_id,
+d.DEPARTMENT_NAME
+from employees e left join departments d
+on e.department_id=d.department_id;
+
+
+
+
+
+========================> Aggregate functions <===========================
+
+
+In database management an aggregate function is a function where the values of multiple rows are grouped together as input on certain criteria to form a single value of more significant meaning.
+
+ 
+
+
+min()
+max()
+sum()
+Avg()
+count()
+
+
+select max(salary) from employees;
+select min(salary) from employees;
+select sum(salary) from employees;
+select count(salary) from employees;
+select avg(salary) from employees;
+
+
+
+select first_name,max(salary) from employees group by first_name;
+-- wrong
+
+select department_id,max(salary) from employees group by department_id;
+
+--whenever we want to use wise keyword, use group by.
+
+Filter condition on resultant of group by clause - We have to use having clause.
+
+Having clause is always come with group by group by + having
+select department_id,sum(salary) from employees group by department_id;
+
+select department_id,sum(salary) from employees group by department_id having sum(salary) > 50000;
+
+select first_name,max(salary) from employees;
+--ORA-00937: not a single-group group function
+
+select first_name,max(salary) from employees group by first_name;
+-- wrong logic
+
+select department_id,sum(salary) from employees where department_id is not null
+group by department_id having sum(salary) >50000 order by 1;
+
+The order of keywords in any oracle SQL statement.
+
+1.from
+2.where
+3.group by
+4.having
+5.order by
+
+select e.department_id,d.department_name, sum(salary)
+from employees e , departments d
+where e.department_id=d.department_id and e.department_id is not null
+group by e.department_id,d.department_name
+having sum(salary) >50000 order by 1;
+
+--select the department where more than 30 employees are working;
+
+select e.department_id,d.department_name,count(*)
+from employees e inner join departments d
+on e.department_id=d.department_id
+group by e.department_id, d.department_name having count(*) > 30;
+
+-- country wise employees count
+
+select l.country_id,c.country_name, count(*) from employees e,departments d,locations l,countries c
+where e.department_id=d.department_id and
+d.location_id=l.location_id and l.country_id=c.country_id
+group by l.country_id,c.country_name;
+
+5.order by
+
+select e.department_id,d.department_name, sum(salary)
+from employees e , departments d
+where e.department_id=d.department_id and e.department_id is not null
+group by e.department_id,d.department_name
+having sum(salary) >50000 order by 1;
+
+--select the department where more than 30 employees are working;
+
+select e.department_id,d.department_name,count(*)
+from employees e inner join departments d
+on e.department_id=d.department_id
+group by e.department_id, d.department_name having count(*) > 30;
+
+-- country wise employees count
+
+select l.country_id,c.country_name, count(*) from employees e,departments d,locations l,countries c
+where e.department_id=d.department_id and
+d.location_id=l.location_id and l.country_id=c.country_id
+group by l.country_id,c.country_name;
+
+5.order by
+
+select e.department_id,d.department_name, sum(salary)
+from employees e , departments d
+where e.department_id=d.department_id and e.department_id is not null
+group by e.department_id,d.department_name
+having sum(salary) >50000 order by 1;
+
+--select the department where more than 30 employees are working;
+
+select e.department_id,d.department_name,count(*)
+from employees e inner join departments d
+on e.department_id=d.department_id
+group by e.department_id, d.department_name having count(*) > 30;
+
+-- country wise employees count
+
+select l.country_id,c.country_name, count(*) from employees e,departments d,locations l,countries c
+where e.department_id=d.department_id and
+d.location_id=l.location_id and l.country_id=c.country_id
+group by l.country_id,c.country_name;
+
+
+
+
+SET OPERATORS :
+================
+
+-- same structured table
+
+1. Union
+
+-- It will remove duplicate
+
+2. Union ALL
+
+-- It will not remove duplicate
+-- It will be executed faster
+
+3. Intersect
+
+--- Common record between both tables
+
+4. Minus
+
+-- Differences
+
+***********************************************************
+
+
+select * from customer1;
+
+cust_id cust_name mobile city
+100001 Arun 90909090 Chennai
+100002 Bala 85432545 Hyd
+100003 Rakesh 90909091 Chennai
+100001 Arun 90909090 Chennai
+
+select * from customer2;
+
+cust_id cust_name phone city
+100001 Arun 90909090 Chennai
+100004 John 46536566 Hyd
+100003 Rakesh 90909091 Chennai
+100005 Sanjay 89543543 Pune
+
+select * from s_customer_union2
+minus
+select * from s_customer_union1;
+
+create table emp_union_2 as select employee_id,first_name,email,phone_number,
+salary,department_id from employees where salary >15000;
+
+select * from EMP_UNION_1;
+
+select * from EMP_UNION_2;
+
+
+
+
+
+
+select employee_id,first_name,email,phone_number,salary,department_id from EMP_UNION_1
+union
+select employee_id,first_name,email,phone_number,salary,department_id from EMP_UNION_2;
+
+select employee_id,first_name,email,phone_number,salary,department_id from EMP_UNION_1
+union all
+select employee_id,first_name,email,phone_number,salary,department_id from EMP_UNION_2;
+
+select employee_id,first_name,email,phone_number,salary,department_id from EMP_UNION_1
+intersect
+select employee_id,first_name,email,phone_number,salary,department_id from EMP_UNION_2;
+
+select employee_id,first_name,email,phone_number,salary,department_id from EMP_UNION_1
+minus
+select employee_id,first_name,email,phone_number,salary,department_id from EMP_UNION_2;
+
+select employee_id,first_name,email,phone_number,salary,department_id from EMP_UNION_2
+minus
+select employee_id,first_name,email,phone_number,salary,department_id from EMP_UNION_1;
+
+drop table EMP_UNION_2;
+
+drop table EMP_UNION_1;
+
+
+create table emp_union_1 as select employee_id,first_name,last_name,email,phone_number,
+salary,department_id from employees where salary >12000;
+
+create table emp_union_2 as select employee_id,first_name,email,phone_number,
+salary,department_id from employees where salary >15000;
+
+select * from emp_union_1
+union
+select * from emp_union_2;
+--A-01789: query block has incorrect number of result columns
+
+select employee_id,first_name,email,phone_number,salary,department_id from emp_union_1
+union
+select employee_id,first_name,email,phone_number,salary,department_id from emp_union_2;
+
+select employee_id,first_name,email,phone_number,salary,department_id from emp_union_1
+union ALL
+select employee_id,first_name,email,phone_number,salary,department_id from emp_union_2;
+
+select employee_id,first_name,email,phone_number,salary,department_id from emp_union_1
+intersect
+select employee_id,first_name,email,phone_number,salary,department_id from emp_union_2;
+
+select employee_id,first_name,email,phone_number,salary,department_id from emp_union_1
+minus
+
+
+select employee_id,first_name,email,phone_number,salary,department_id from emp_union_2;
+
+select employee_id,first_name,email,phone_number,salary,department_id from emp_union_2
+minus
+select employee_id,first_name,email,phone_number,salary,department_id from emp_union_1;
+
+-- How to find a duplicate record
+
+select employee_id,count(*) from emp_union_1 group by employee_id;
+
+select employee_id,count(*) from emp_union_1 group by employee_id having count(*) >1;
+
+select employee_id,count(*) from emp_union_2 group by employee_id having count(*) >1;
+
+-- how to delete a deplicate record
+
+delete from emp_union_1 where rowid not in (
+select max(rowid) from emp_union_1 group by employee_id);
+
+
+
+
+
+
+
+

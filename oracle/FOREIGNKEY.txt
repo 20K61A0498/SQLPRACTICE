@@ -1,0 +1,17 @@
+
+
+--------------------------FORIEGN KEY CONSTRAINT------------------------------------------
+
+create table table1(id number(5) constraint id_fk  references table2(di));
+create table table2(di number(5) constraint di_pk  primary key);
+insert into table2 values(104);
+
+select * from table1;
+select * from table2;
+
+--tab2 = parent
+--tab1= child
+delete from table2 where di=101;
+alter table table1 drop constraint id_fk;
+
+alter table table1 add constraint id_fk foreign key(id) references table2(di) on delete cascade;

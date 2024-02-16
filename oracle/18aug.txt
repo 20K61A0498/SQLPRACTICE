@@ -1,0 +1,61 @@
+--select ---------------------
+--FROM
+--where ---------------
+--order by --------
+
+select last_name from employees WHERE last_name >'Hunold';
+
+select last_name from employees where salary <=10000;
+
+select last_name,salary from employees where salary between 5000 and 10000 order by 2 ;
+
+select last_name from employees order by last_name desc;
+
+select * from employees;
+
+select last_name,department_id from employees where last_name not in ('Abel','Hunold','King');
+
+select last_name,department_id from employees where salary  not in (90,60,110);
+
+--LIKE
+-- wild card search opearators - %
+
+
+select * from employees where last_name like '_a__';
+
+
+select * from employees where commission_pct is not  null;
+
+select * from employees where salary < 12000 or department_id = 60;
+
+select sysdate from dual; 
+
+
+select hire_date hg from employees order by hg desc;
+
+SELECT last_name, department_id, salary
+FROM employees
+ORDER BY department_id, salary DESC; 
+
+select &name from employees where last_name = '&hsdbchj';
+
+SELECT employee_id, last_name, job_id,&column_name
+FROM employees
+WHERE &condition
+ORDER BY &order_column;
+
+
+SELECT employee_id, last_name, job_id, &&column_nam
+FROM employees
+ORDER BY &column_nam;
+
+
+SET VERIFY ON
+DEFINE employee_num = 200 
+DEFINE employee_num2 = 101
+SELECT employee_id, last_name, salary, department_id
+FROM employees
+WHERE employee_id in (&employee_num,&employee_num2);
+
+undefine employee_num
+

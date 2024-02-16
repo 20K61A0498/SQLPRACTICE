@@ -1,0 +1,55 @@
+create table test(no1 number(2),no2 number(2));
+
+insert into test values (1,2);
+savepoint a;
+insert into test values (2,3);
+savepoint b;
+insert into test values (3,4);
+savepoint c;
+insert into test values (5,6);
+savepoint d;
+
+commit;
+
+select * from test;
+
+rollback;
+
+--delete table
+
+drop table test;
+-- to delete column
+alter table table_name drop column col_name ;
+-------------------------------------------------------
+
+select * from departments;
+
+delete from departments where department_id = 90;
+
+
+-- constarints
+create table customer (id number(3) constraint ramana_pk  primary key,
+name varchar2(20) constraint ramana_nn not null,
+mobile number(10) constraint ramana_uq unique,
+age number(2) constraint jhansi_ag check(age>=18),
+city_id number(3) references city (town_id)
+);
+
+
+create table city(town_id number(3) constraint city_pk primary key);
+
+insert into city values(40);
+
+insert into customer values(103,'jhansi',1234467580,10,20);
+
+select * from city;
+select * from customer;
+
+
+
+
+
+
+
+
+
